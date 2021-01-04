@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Jeu tuyaux mario</title>
+	<style type="text/css">	
+	table {
+		border: 1px black solid;
+		border-color: transparent;
+		text-align: center;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	td {
+		border: 1px black solid;
+		border-color: black;
+		width: 190px;
+		height: 20px;
+		background-color: grey;
+	}
+	body {
+		background-color: #F0DEAF;
+		background-image:url(fond_jeu_tuyaux.png);
+		background-size: cover;
+		width: 100%;
+		height: 100%;
+		
+	}
+	#canvas {
+	position: relative;
+	right: 50px;
+	}
+	</style>
+</head>
+<body id="bdy">
+	
+	<table border="1">
+		<tr>
+			<td id="e1"> 1 </td>
+			<td id="e2"> 2 </td>
+			<td id="e3"> 3 </td>
+			<td id="e4"> 4 </td>
+			<td id="e5"> 5 </td>
+		</tr>
+		<tr>
+			<td colspan="5" style="background-color: transparent; border-color: transparent;">
+			<canvas id="canvas" width="910" height="800" ></canvas>
+			<!-- création d'un espace de 1400 pixels de longueur et 800 pixels de largeur pour l'élément canvas -->
+			</td>
+		</tr>
+		<tr>
+			<td id="s1"><input type="button" value="A"></td>
+			<td id="s2"><input type="button" value="B"></td>
+			<td id="s3"><input type="button" value="C"></td>
+			<td id="s4"><input type="button" value="D"></td>
+			<td id="s5"><input type="button" value="E"></td>
+		</tr>
+	</table>
+	
+	<script type="text/javascript">
+
+		alert("Vite! trouve le bon tuyaux pour retourner dans ton monde! Ton temps est compté les habitants te poursuivent... tu as 20 secondes, soyez rapide! (l'entrée est affichée en rouge)");
+			//au chargement, affiche le message inscrit dans alert().
+
+		var ResAléa = Math.ceil(Math.random()*5);
+			//la variable Res Aléa génère un nombre compris entre 1 et 5.
+		document.querySelector("#e"+ResAléa).style.background = "red";
+			//la couleur de fond d'une des 5 entrées générée aléatoirement est en rouge.
+	
+		document.querySelector('#s4').addEventListener('click',function() {
+			if (ResAléa == 1) {
+				//si lorsque le nombre généré est 1
+				alert("tu as choisi le bon tuyaux!");
+					//affiche le message inscrit dans alert().
+				document.location.reload(true);
+					//se dirige vers la page test.
+			}else{
+				//sinon...
+				alert("Le tuyaux t'a amené dans le vide intersidéral... Essaye encore.");
+					//affiche le message inscrit dans alert().
+				document.location.reload(true);
+					//recharge la page.
+			}
+
+		});
+
+		document.querySelector('#s3').addEventListener('click',function() {
+			if (ResAléa == 2) {
+				//si lorsque le nombre généré est 2
+				alert("tu as choisi le bon tuyaux!");
+					//affiche le message inscrit dans alert().
+				document.location.reload(true);
+					//se dirige vers la page test.
+			}else{
+					//sinon...
+				alert("Le tuyaux t'a amené dans le vide intersidéral... Essaye encore.");
+					//affiche le message inscrit dans alert().
+				document.location.reload(true);
+					//recharge la page.
+			}
+
+		});
+
+		document.querySelector('#s5').addEventListener('click',function() {
+			if (ResAléa == 3) {
+				//si lorsque le nombre généré est 3
+				alert("tu as choisi le bon tuyaux!");
+					//affiche le message inscrit dans alert().
+				document.location.reload(true);
+					//se dirige vers la page test.
+			}else{
+				//sinon...
+				alert("Le tuyaux t'a amené dans le vide intersidéral... Essaye encore.");
+					//affiche le message inscrit dans alert().
+				document.location.reload(true);
+					//recharge la page.
+			}
+
+		});
+
+		document.querySelector('#s1').addEventListener('click',function() {
+			if (ResAléa == 4) {
+				//si lorsque le nombre généré est 4
+				alert("tu as choisi le bon tuyaux!");
+					//affiche le message inscrit dans alert().
+				document.location.reload(true);
+					//se dirige vers la page test.
+			}else{
+					//sinon...
+				alert("Le tuyaux t'a amené dans le vide intersidéral... Essaye encore.");
+					//affiche le message inscrit dans alert().
+				document.location.reload(true);
+					//recharge la page.
+			}
+
+		});
+
+		document.querySelector('#s2').addEventListener('click',function() {
+			if (ResAléa == 5) {
+				//si lorsque le nombre généré est 5
+				alert("tu as choisi le bon tuyaux!");
+					//affiche le message inscrit dans alert().
+				document.location.reload(true);
+					//se dirige vers la page test.
+			}else{
+				//sinon...
+				alert("Le tuyaux t'a amené dans le vide intersidéral... Essaye encore.");
+					//affiche le message inscrit dans alert().
+				document.location.reload(true);
+					//recharge la page.
+			}
+		});
+
+		var tabPasVerti = [125, 250, 375, 500, 625]	
+			//melanger tableau
+
+		for (var i = 0; i < tabPasVerti.length; i++) {
+			//mélange 2 cases du tabPasVerti
+				var melange = Math.floor(Math.random() * tabPasVerti.length);
+					//la variable "melange" génère un nombre àléatoire par défaut par rapport à la longeur de la boucle. ELle contient 5 éléments donc génération d'un nombre aléatoire entre 0 et 4
+				var tmp = tabPasVerti[melange];
+
+				tabPasVerti[melange] = tabPasVerti[i];
+				tabPasVerti[i] = tmp;
+					//mélange les positions de 2 chemins.
+		}
+
+		var ctx = canvas.getContext("2d");
+			//affichage du canvas en 2D.
+
+		function draw() {
+
+			var canvas = document.getElementById("canvas");
+			if (canvas.getContext) {
+				var ctx = canvas.getContext('2d');
+			}
+
+			ctx.beginPath();
+				//lancement de la création du canvas.
+			ctx.moveTo(100,0);
+			ctx.lineTo(100,tabPasVerti[0]);
+			ctx.lineTo(700,tabPasVerti[0]);
+			ctx.lineTo(700,850);
+				//coordonnées du canvas.
+			ctx.lineWidth = 15;
+				//épaisseur de la ligne généré par le canvas.
+			ctx.strokeStyle = colorchm1;
+				//style de(s) couleur(s) de la fonction colorchm1.
+			ctx.stroke();
+				//fin de la création.
+
+			ctx.beginPath();
+			ctx.moveTo(300,0);
+			ctx.lineTo(300,tabPasVerti[1]);
+			ctx.lineTo(500,tabPasVerti[1]);
+			ctx.lineTo(500,850);
+			ctx.lineWidth = 15;
+			ctx.strokeStyle = colorchm2;
+				//style de(s) couleur(s) de la fonction colorchm2.
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(500,0);
+			ctx.lineTo(500,tabPasVerti[2]);
+			ctx.lineTo(900,tabPasVerti[2]);
+			ctx.lineTo(900,850);
+			ctx.lineWidth = 15;
+			ctx.strokeStyle = colorchm3;
+				//style de(s) couleur(s) de la fonction colorchm3.
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(700,0);
+			ctx.lineTo(700,tabPasVerti[3]);
+			ctx.lineTo(100,tabPasVerti[3]);
+			ctx.lineTo(100,850);
+			ctx.lineWidth = 15;
+			ctx.strokeStyle = colorchm4;
+				//style de(s) couleur(s) de la fonction colorchm4.
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(900,0);
+			ctx.lineTo(900,tabPasVerti[4]);
+			ctx.lineTo(300,tabPasVerti[4]);
+			ctx.lineTo(300,850);
+			ctx.lineWidth = 15;
+			ctx.strokeStyle = colorchm5;
+				//style de(s) couleur(s) de la fonction colorchm5.
+			ctx.stroke();
+		}
+
+		function chgt1(){
+			colorchm1 = '#CE8FE2';
+			colorchm2 = '#8CD67A';
+			colorchm3 = '#ACC3DA';
+			colorchm4 = '#F57A7A';
+			colorchm5 = '#BCEEE5';
+			draw();
+				//liste des couleurs (des différents "chemins" du canvas de la fonction chgt1().
+		}
+
+		function chgt2(){
+			colorchm1 = '#8CD67A';
+			colorchm2 = '#ACC3DA';
+			colorchm3 = '#F57A7A';
+			colorchm4 = '#BCEEE5';
+			colorchm5 = '#CE8FE2';
+			draw();
+				//liste des couleurs (des différents "chemins" du canvas de la fonction chgt2().
+		}
+
+		function chgt3(){
+			colorchm1 = '#ACC3DA';
+			colorchm2 = '#F57A7A';
+			colorchm3 = '#BCEEE5';
+			colorchm4 = '#CE8FE2';
+			colorchm5 = '#8CD67A';
+			draw();
+				//liste des couleurs (des différents "chemins" du canvas de la fonction chgt3().
+		}
+
+		function chgt4(){
+			colorchm1 = '#F57A7A';
+			colorchm2 = '#BCEEE5';
+			colorchm3 = '#CE8FE2';
+			colorchm4 = '#8CD67A';
+			colorchm5 = '#ACC3DA';
+			draw();
+				//liste des couleurs (des différents "chemins" du canvas de la fonction chgt4().
+		}
+
+		function chgt5(){
+			colorchm1 = '#BCEEE5';
+			colorchm2 = '#CE8FE2';
+			colorchm3 = '#8CD67A';
+			colorchm4 = '#ACC3DA';
+			colorchm5 = '#F57A7A';
+			draw();
+				//liste des couleurs (des différents "chemins" du canvas de la fonction chgt5().
+		}
+
+		var colorchm1 = '#BCEEE5';
+		var colorchm2 = '#CE8FE2';
+		var colorchm3 = '#8CD67A';
+		var colorchm4 = '#ACC3DA';
+		var colorchm5 = '#F57A7A';
+		
+		setTimeout(chgt1, 1000);
+		setTimeout(chgt2, 2000);
+		setTimeout(chgt3, 3000);
+		setTimeout(chgt4, 4000);
+		setTimeout(chgt5, 5000);
+		setTimeout(chgt1, 6000);
+		setTimeout(chgt2, 7000);
+		setTimeout(chgt3, 8000);
+		setTimeout(chgt4, 9000);
+		setTimeout(chgt5, 10000);
+		setTimeout(chgt1, 11000);
+		setTimeout(chgt2, 12000);
+		setTimeout(chgt3, 13000);
+		setTimeout(chgt4, 14000);
+		setTimeout(chgt5, 15000);
+		setTimeout(chgt1, 16000);
+		setTimeout(chgt2, 17000);
+		setTimeout(chgt3, 18000);
+		setTimeout(chgt4, 19000);
+		setTimeout(chgt5, 20000);
+			//en foction du temps passé(en millième de seconde), applique une foction.
+		draw()
+
+		function TimeUp(){
+			alert("Tu as été trop lent. Les villageois t'ont attrapés.")
+			//affiche le message inscrit dans alert().
+			document.location.reload(true);
+			//recharge la page.
+		}
+
+		setTimeout(TimeUp,20000);
+		//affiche la fonction TimeUp après 20 secondes.
+		
+		</script>
+
+</body>
+</html>
